@@ -1,21 +1,28 @@
 <template>
-  <div v-if="open" class="fixed inset-0 z-50 flex justify-end">
-    <div class="bg-black/40 flex-1" @click="$emit('close')"></div>
-    <div class="bg-white w-80 p-6 flex flex-col shadow-xl">
-      <h2 class="text-xl font-bold mb-4">Your Cart 🛒</h2>
-      <div v-if="cart.items.length === 0" class="text-gray-500">Your cart is empty.</div>
-      <div v-for="item in cart.items" :key="item.id" class="flex justify-between items-center mb-3">
-        <div>
-          <p class="font-medium">{{ item.name }}</p>
-          <p class="text-sm text-gray-500">x{{ item.qty }} — ${{ (item.price * item.qty).toFixed(2) }}</p>
-        </div>
-        <button @click="cart.removeItem(item.id)" class="text-red-400 hover:text-red-600">✕</button>
+  <div v-if="open" style="position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;display:flex;justify-content:flex-end;" @click="$emit('close')">
+    <div style="background:var(--cream);width:370px;padding:2rem;display:flex;flex-direction:column;box-shadow:-4px 0 32px rgba(0,0,0,0.18);" @click.stop>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;border-bottom:1px solid #e8d5c4;padding-bottom:1rem;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--brown);">Your Cart</h2>
+        <button @click="$emit('close')" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--brown);">✕</button>
       </div>
-      <div class="mt-auto border-t pt-4">
-        <p class="font-bold text-lg">Total: ${{ cart.total.toFixed(2) }}</p>
-        <RouterLink to="/checkout" @click="$emit('close')"
-          class="block mt-3 bg-rose-500 text-white text-center py-2 rounded-full hover:bg-rose-600">
-          Checkout
+
+      <div style="flex:1;overflow-y:auto;">
+        <p v-if="cart.items.length === 0" style="color:#aaa;text-align:center;padding:3rem 0;">Your cart is empty</p>
+        <div v-for="item in cart.items" :key="item.id" style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 0;border-bottom:1px solid #f0e4d7;">
+          <div>
+            <div style="font-size:0.9rem;color:var(--brown);font-weight:500;">{{ item.name }}</div>
+            <div style="font-size:0.82rem;color:#999;">x{{ item.qty }} — ${{ (item.price * item.qty).toFixed(2) }}</div>
+          </div>
+          <button @click="cart.removeItem(item.id)" style="background:none;border:none;color:var(--warm);cursor:pointer;font-size:1.1rem;">✕</button>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;padding-top:1.2rem;border-top:2px solid #e8d5c4;">
+        <div style="display:flex;justify-content:space-between;font-weight:700;font-size:1.15rem;margin-bottom:1.2rem;color:var(--brown);">
+          <span>Total</span><span>${{ cart.total.toFixed(2) }}</span>
+        </div>
+        <RouterLink to="/checkout" @click="$emit('close')" style="display:block;width:100%;background:var(--brown);color:white;border:none;padding:1rem;font-size:0.9rem;cursor:pointer;letter-spacing:0.15em;text-transform:uppercase;text-align:center;text-decoration:none;">
+          Proceed to Checkout
         </RouterLink>
       </div>
     </div>
@@ -25,6 +32,6 @@
 <script setup>
 import { useCartStore } from '../stores/cart'
 const cart = useCartStore()
-defineProps({ open: Boolean })
+defineProps(['open'])
 defineEmits(['close'])
 </script>
