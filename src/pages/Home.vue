@@ -87,7 +87,7 @@
       <p class="reveal-up" style="color:#999;margin-bottom:2rem;font-size:0.9rem;transition-delay:0.1s;">Real people, real radiance</p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;">
         <img
-          v-for="(src, i) in ['/hero1.jpg', '/hero2.jpg', '/hero3.jpg']"
+          v-for="(src, i) in ['/hero30.png', '/hero33.png', '/hero26.png']"
           :key="src"
           :src="src"
           class="reveal-up customer-img"
