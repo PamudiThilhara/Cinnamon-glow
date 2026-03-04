@@ -16,12 +16,16 @@
 
     <!-- DISCOVER -->
     <div style="padding:5rem 3rem;max-width:1200px;margin:0 auto;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:#6b2d0f;text-align:center;margin-bottom:0.5rem;">Discover Your Shade</h2>
-      <p style="text-align:center;color:#999;margin-bottom:3rem;font-size:0.9rem;">Handcrafted beauty for warm, radiant skin tones</p>
+      <h2 class="reveal-up" style="font-family:'Playfair Display',serif;font-size:2rem;color:#6b2d0f;text-align:center;margin-bottom:0.5rem;">Discover Your Shade</h2>
+      <p class="reveal-up" style="text-align:center;color:#999;margin-bottom:3rem;font-size:0.9rem;transition-delay:0.1s;">Handcrafted beauty for warm, radiant skin tones</p>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;">
-        <div v-for="look in looks" :key="look.label"
-          style="text-align:center;cursor:pointer;overflow:hidden;border-radius:8px;"
-          @click="$router.push('/products')">
+        <div
+          v-for="(look, i) in looks"
+          :key="look.label"
+          class="reveal-up"
+          :style="`text-align:center;cursor:pointer;overflow:hidden;border-radius:8px;transition-delay:${0.1 + i * 0.12}s`"
+          @click="$router.push('/products')"
+        >
           <img :src="look.img" :alt="look.label" class="look-img" />
           <p style="font-size:0.9rem;color:#6b2d0f;font-weight:500;padding:0.5rem;">{{ look.label }}</p>
         </div>
@@ -32,13 +36,12 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;width:100%;">
 
       <!-- AUTO IMAGE SLIDER -->
-      <div style="position:relative;overflow:hidden;">
-        <transition name="fade" mode="out-in">
+      <div class="reveal-left slider-container">
+        <transition name="slide-fade">
           <img :key="currentImage" :src="aboutImages[currentImage]" class="slider-img" />
         </transition>
         <button @click="prevImage" style="position:absolute;top:50%;left:15px;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 15px;border-radius:50%;cursor:pointer;">❮</button>
         <button @click="nextImage" style="position:absolute;top:50%;right:15px;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:white;border:none;padding:10px 15px;border-radius:50%;cursor:pointer;">❯</button>
-        <!-- DOTS -->
         <div style="position:absolute;bottom:15px;left:50%;transform:translateX(-50%);display:flex;gap:8px;">
           <span v-for="(img, i) in aboutImages" :key="i"
             @click="currentImage = i"
@@ -48,7 +51,7 @@
       </div>
 
       <!-- TEXT -->
-      <div style="background:#6b2d0f;display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem;color:white;min-height:750px;">
+      <div class="reveal-right" style="background:#6b2d0f;display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem;color:white;min-height:750px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:2.8rem;color:#c9a84c;margin-bottom:1.2rem;font-style:italic;line-height:1.2;">Made for<br/>Your Glow</h2>
         <p style="color:#e8d5c4;line-height:1.9;margin-bottom:2.5rem;font-size:0.95rem;">Cinnamon Glow is crafted with pure cinnamon and natural ingredients to nourish, protect, and enhance your radiant skin. Our formulas help reveal your natural warm glow.</p>
         <RouterLink to="/products" style="display:inline-block;border:2px solid #c9a84c;color:#c9a84c;padding:1rem 2.5rem;font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;width:fit-content;">Shop Now →</RouterLink>
@@ -58,12 +61,16 @@
 
     <!-- FEATURED -->
     <div style="background:#f5ede3;padding:5rem 3rem;width:100%;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:#6b2d0f;text-align:center;margin-bottom:0.5rem;">Featured Rituals</h2>
-      <p style="text-align:center;color:#999;margin-bottom:3rem;font-size:0.9rem;">Our bestselling beauty rituals</p>
+      <h2 class="reveal-up" style="font-family:'Playfair Display',serif;font-size:2rem;color:#6b2d0f;text-align:center;margin-bottom:0.5rem;">Featured Rituals</h2>
+      <p class="reveal-up" style="text-align:center;color:#999;margin-bottom:3rem;font-size:0.9rem;transition-delay:0.1s;">Our bestselling beauty rituals</p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1000px;margin:0 auto;">
-        <div v-for="item in featured" :key="item.id"
-          style="text-align:center;cursor:pointer;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(107,45,15,0.08);"
-          @click="addToCart(item)">
+        <div
+          v-for="(item, i) in featured"
+          :key="item.id"
+          class="reveal-up"
+          :style="`text-align:center;cursor:pointer;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(107,45,15,0.08);transition-delay:${i * 0.15}s`"
+          @click="addToCart(item)"
+        >
           <img :src="item.image" :alt="item.name" style="width:100%;height:220px;object-fit:cover;" />
           <div style="padding:1.2rem;">
             <p style="font-family:'Playfair Display',serif;font-size:0.95rem;color:#6b2d0f;margin-bottom:0.3rem;">{{ item.name }}</p>
@@ -76,12 +83,16 @@
 
     <!-- CUSTOMERS -->
     <div style="padding:5rem 3rem;text-align:center;width:100%;background:#fdf8f3;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:#6b2d0f;margin-bottom:0.5rem;">Customer Favourites</h2>
-      <p style="color:#999;margin-bottom:2rem;font-size:0.9rem;">Real people, real radiance</p>
+      <h2 class="reveal-up" style="font-family:'Playfair Display',serif;font-size:2rem;color:#6b2d0f;margin-bottom:0.5rem;">Customer Favourites</h2>
+      <p class="reveal-up" style="color:#999;margin-bottom:2rem;font-size:0.9rem;transition-delay:0.1s;">Real people, real radiance</p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;">
-        <img src="/hero1.jpg" style="width:100%;height:350px;object-fit:cover;object-position:top;border-radius:8px;" />
-        <img src="/hero2.jpg" style="width:100%;height:350px;object-fit:cover;object-position:top;border-radius:8px;" />
-        <img src="/hero3.jpg" style="width:100%;height:350px;object-fit:cover;object-position:top;border-radius:8px;" />
+        <img
+          v-for="(src, i) in ['/hero1.jpg', '/hero2.jpg', '/hero3.jpg']"
+          :key="src"
+          :src="src"
+          class="reveal-up customer-img"
+          :style="`transition-delay:${i * 0.15}s`"
+        />
       </div>
     </div>
 
@@ -107,11 +118,7 @@ const looks = [
   { img: '/hero12.jpg', label: 'Signature Collection' },
 ]
 
-const aboutImages = [
-  '/hero13.jpg',
-  '/hero21.jpg',
-  '/hero15.png',
-]
+const aboutImages = ['/hero13.jpg', '/hero21.jpg', '/hero15.png']
 
 const featured = [
   { id:1, name:'Toasted Cinnamon Body Oil', price:38, image:'/hero8.jpg' },
@@ -124,28 +131,80 @@ const currentImage = ref(0)
 function nextImage() {
   currentImage.value = (currentImage.value + 1) % aboutImages.length
 }
-
 function prevImage() {
   currentImage.value = (currentImage.value - 1 + aboutImages.length) % aboutImages.length
 }
-
 function addToCart(item) {
   cart.addItem(item)
 }
 
-let timer
+// Intersection Observer for scroll animations
+let observer
 onMounted(() => {
-  timer = setInterval(() => {
-    nextImage()
-  }, 3000)
+  // Auto-slider
+  const timer = setInterval(nextImage, 3000)
+  onUnmounted(() => clearInterval(timer))
+
+  // Observe all animatable elements
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view')
+          observer.unobserve(entry.target) // animate once
+        }
+      })
+    },
+    { threshold: 0.12 }
+  )
+
+  document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach((el) => {
+    observer.observe(el)
+  })
 })
 
 onUnmounted(() => {
-  clearInterval(timer)
+  observer?.disconnect()
 })
 </script>
 
 <style scoped>
+/* ===== SCROLL ANIMATIONS ===== */
+
+/* Fade up (photos, cards, text headings) */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide in from left (slider panel) */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide in from right (text panel) */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== EXISTING STYLES ===== */
 .look-img {
   width: 100%;
   height: 320px;
@@ -165,12 +224,41 @@ onUnmounted(() => {
   object-fit: cover;
   object-position: top;
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.6s ease-in-out;
+.customer-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
 }
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  height: 750px;
+}
+/* Smooth overlap crossfade - no flash, no gap */
+.slide-fade-enter-active {
+  transition: opacity 1.4s ease;
+  animation: kenburns 7s ease-out forwards;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 2;
+}
+.slide-fade-leave-active {
+  transition: opacity 1.4s ease;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+.slide-fade-enter-from { opacity: 0; }
+.slide-fade-enter-to   { opacity: 1; }
+.slide-fade-leave-from { opacity: 1; }
+.slide-fade-leave-to   { opacity: 0; }
+
+@keyframes kenburns {
+  0%   { transform: scale(1.08) translate(8px, 4px); }
+  100% { transform: scale(1.0)  translate(0, 0); }
 }
 </style>
