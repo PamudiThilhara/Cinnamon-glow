@@ -1,15 +1,26 @@
 <template>
-  <nav style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 3rem;background:#6b2d0f;position:sticky;top:0;z-index:100;width:100%;">
-    
-    <!-- LEFT - empty for balance -->
+  <nav :style="{
+    display:'flex',
+    justifyContent:'space-between',
+    alignItems:'center',
+    padding:'0.8rem 3rem',
+    background: theme.isDark ? '#0d0500' : '#6b2d0f',
+    position:'sticky',
+    top:'0',
+    zIndex:'100',
+    width:'100%',
+    transition:'background 0.4s ease'
+  }">
+
+    <!-- LEFT empty -->
     <div style="flex:1;"></div>
 
-    <!-- CENTER - LOGO -->
+    <!-- CENTER LOGO -->
     <RouterLink to="/" style="text-decoration:none;flex:1;display:flex;justify-content:center;">
       <img src="/hero66.png" style="height:65px;object-fit:contain;" alt="Cinnamon Glow Logo" />
     </RouterLink>
 
-    <!-- RIGHT - NAV LINKS -->
+    <!-- RIGHT NAV -->
     <div style="flex:1;display:flex;justify-content:flex-end;gap:2rem;align-items:center;">
       <RouterLink to="/products" style="color:#e8d5c4;text-decoration:none;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">Shop</RouterLink>
       <RouterLink to="/" style="color:#e8d5c4;text-decoration:none;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">About</RouterLink>
@@ -18,6 +29,11 @@
         🛒 Cart
         <span style="background:#c9a84c;color:#6b2d0f;border-radius:50%;width:20px;height:20px;font-size:0.75rem;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">{{ cart.count }}</span>
       </button>
+      <!-- DARK MODE TOGGLE -->
+      <button @click="theme.toggleDark()"
+        style="background:transparent;border:1px solid #e8d5c4;border-radius:50px;padding:0.4rem 1rem;cursor:pointer;font-size:1rem;display:flex;align-items:center;gap:0.4rem;color:#e8d5c4;transition:all 0.3s;">
+        {{ theme.isDark ? '☀️ Day' : '🌙 Night' }}
+      </button>
     </div>
 
   </nav>
@@ -25,6 +41,8 @@
 
 <script setup>
 import { useCartStore } from '../stores/cart'
+import { useThemeStore } from '../stores/theme'
 const cart = useCartStore()
+const theme = useThemeStore()
 defineEmits(['toggle-cart'])
 </script>

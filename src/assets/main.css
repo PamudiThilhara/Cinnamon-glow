@@ -1,13 +1,60 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; overflow-x: hidden; }
+
+/* LIGHT MODE */
 :root {
+  --cream: #fdf8f3;
+  --light: #f5ede3;
   --brown: #6b2d0f;
   --cinnamon: #8b4513;
   --warm: #c17f3a;
-  --cream: #fdf8f3;
-  --light: #f5ede3;
   --gold: #c9a84c;
   --text: #3d1f0a;
+  --card-bg: #ffffff;
+  --input-bg: #fdf8f3;
+  --border: #e8d5c4;
+  --subtext: #999999;
+  --nav-bg: #6b2d0f;
 }
-body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+/* DARK MODE */
+[data-theme="dark"] {
+  --cream: #1a0a00;
+  --light: #2a1200;
+  --brown: #c9a84c;
+  --cinnamon: #e8a050;
+  --warm: #c17f3a;
+  --gold: #c9a84c;
+  --text: #e8d5c4;
+  --card-bg: #2a1200;
+  --input-bg: #1a0a00;
+  --border: #4a2a10;
+  --subtext: #b89880;
+  --nav-bg: #0d0500;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* DARK MODE APPLY TO ALL */
+[data-theme="dark"] body {
+  background: #1a0a00 !important;
+  color: #e8d5c4 !important;
+}
+
+[data-theme="dark"] div {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] p {
+  color: var(--text);
+}
