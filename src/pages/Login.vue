@@ -144,12 +144,56 @@ function handleSocial() {
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── CSS VARIABLES - Light Mode ── */
 .login-page {
+  --bg-page:        #fdf8f3;
+  --bg-input:       #ffffff;
+  --bg-social:      #ffffff;
+  --bg-social-hover:#fff9f4;
+  --text-heading:   #3d1f0a;
+  --text-body:      #3d1f0a;
+  --text-muted:     #b8926a;
+  --text-label:     #6b2d0f;
+  --text-sub:       #c17f3a;
+  --text-placeholder: #c9a496;
+  --border-input:   #e2c9b3;
+  --border-social:  #e8d5c4;
+  --border-divider: #d4b896;
+  --text-divider:   #b8926a;
+  --link-color:     #6b2d0f;
+  --link-forgot:    #c17f3a;
+  --link-forgot-hover: #8b4513;
+  --success-color:  #8b4513;
+
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-family: 'DM Sans', sans-serif;
-  background: #fdf8f3;
+  background: var(--bg-page);
+}
+
+/* ── CSS VARIABLES - Dark Mode ── */
+@media (prefers-color-scheme: dark) {
+  .login-page {
+    --bg-page:        #1a0f0a;
+    --bg-input:       #2a1810;
+    --bg-social:      #2a1810;
+    --bg-social-hover:#3a2318;
+    --text-heading:   #f0e0d0;
+    --text-body:      #f0e0d0;
+    --text-muted:     #7a5a48;
+    --text-label:     #c9a84c;
+    --text-sub:       #c17f3a;
+    --text-placeholder: #7a5a48;
+    --border-input:   #4a2e1e;
+    --border-social:  #4a2e1e;
+    --border-divider: #4a2e1e;
+    --text-divider:   #7a5a48;
+    --link-color:     #c9a84c;
+    --link-forgot:    #c9a84c;
+    --link-forgot-hover: #f0d080;
+    --success-color:  #c9a84c;
+  }
 }
 
 /* ── LEFT PANEL ── */
@@ -206,12 +250,13 @@ function handleSocial() {
 
 /* ── RIGHT PANEL ── */
 .right-panel {
-  background: #fdf8f3;
+  background: var(--bg-page);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3rem 2rem;
   position: relative;
+  transition: background 0.3s ease;
 }
 
 /* subtle warm texture strip on top */
@@ -237,9 +282,10 @@ function handleSocial() {
 .form-logo {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
-  color: #3d1f0a;
+  color: var(--text-heading);
   margin-bottom: 2.5rem;
   font-weight: 700;
+  transition: color 0.3s;
 }
 .form-logo em { font-style: italic; color: #8b4513; }
 
@@ -247,13 +293,14 @@ function handleSocial() {
 .form-heading {
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
-  color: #3d1f0a;
+  color: var(--text-heading);
   font-weight: 700;
   margin-bottom: 0.3rem;
   letter-spacing: -0.01em;
+  transition: color 0.3s;
 }
 .form-sub {
-  color: #c17f3a;
+  color: var(--text-sub);
   font-size: 0.88rem;
   margin-bottom: 2rem;
   font-weight: 400;
@@ -272,10 +319,10 @@ function handleSocial() {
   justify-content: center;
   gap: 0.6rem;
   padding: 0.75rem 1rem;
-  background: white;
-  border: 1.5px solid #e8d5c4;
+  background: var(--bg-social);
+  border: 1.5px solid var(--border-social);
   border-radius: 12px;
-  color: #3d1f0a;
+  color: var(--text-body);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
@@ -285,7 +332,7 @@ function handleSocial() {
 }
 .s-btn:hover {
   border-color: #c9a84c;
-  background: #fff9f4;
+  background: var(--bg-social-hover);
   box-shadow: 0 4px 16px rgba(107,45,15,0.1);
   transform: translateY(-1px);
 }
@@ -300,11 +347,11 @@ function handleSocial() {
 .or-row::before, .or-row::after {
   content: ''; flex: 1;
   height: 1px;
-  background: linear-gradient(to right, transparent, #d4b896, transparent);
+  background: var(--border-divider);
 }
 .or-row span {
   font-size: 0.72rem;
-  color: #b8926a;
+  color: var(--text-divider);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -318,7 +365,7 @@ function handleSocial() {
   display: block;
   font-size: 0.72rem;
   font-weight: 600;
-  color: #6b2d0f;
+  color: var(--text-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 0.45rem;
@@ -326,17 +373,17 @@ function handleSocial() {
 
 .field input {
   width: 100%;
-  background: white;
-  border: 1.5px solid #e2c9b3;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-input);
   border-radius: 12px;
   padding: 0.8rem 1.1rem;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.92rem;
-  color: #3d1f0a;
+  color: var(--text-body);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.3s, color 0.3s;
 }
-.field input::placeholder { color: #c9a496; }
+.field input::placeholder { color: var(--text-placeholder); }
 .field input:focus {
   border-color: #c9a84c;
   box-shadow: 0 0 0 4px rgba(201,168,76,0.1);
@@ -352,20 +399,20 @@ function handleSocial() {
 }
 .forgot-link {
   font-size: 0.75rem;
-  color: #c17f3a;
+  color: var(--link-forgot);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
-.forgot-link:hover { color: #8b4513; }
+.forgot-link:hover { color: var(--link-forgot-hover); }
 
 .pw-field {
   display: flex;
-  background: white;
-  border: 1.5px solid #e2c9b3;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-input);
   border-radius: 12px;
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
 }
 .pw-field:focus-within {
   border-color: #c9a84c;
@@ -377,19 +424,19 @@ function handleSocial() {
   padding: 0.8rem 1.1rem;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.92rem;
-  color: #3d1f0a;
+  color: var(--text-body);
   background: transparent;
 }
-.pw-field input::placeholder { color: #c9a496; }
+.pw-field input::placeholder { color: var(--text-placeholder); }
 .eye {
   background: none; border: none;
   padding: 0 0.9rem;
   cursor: pointer; font-size: 0.88rem;
-  color: #b8926a;
+  color: var(--text-muted);
   transition: color 0.2s;
   display: flex; align-items: center;
 }
-.eye:hover { color: #6b2d0f; }
+.eye:hover { color: var(--text-label); }
 
 .err-msg {
   display: block;
@@ -441,7 +488,7 @@ function handleSocial() {
 
 .success-msg {
   text-align: center;
-  color: #8b4513;
+  color: var(--success-color);
   font-size: 0.83rem;
   font-weight: 500;
   margin-bottom: 0.8rem;
@@ -451,10 +498,10 @@ function handleSocial() {
 .register-row {
   text-align: center;
   font-size: 0.83rem;
-  color: #b8926a;
+  color: var(--text-muted);
 }
 .register-row a {
-  color: #6b2d0f;
+  color: var(--link-color);
   font-weight: 600;
   text-decoration: none;
   margin-left: 4px;
