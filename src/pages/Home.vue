@@ -409,7 +409,7 @@ onUnmounted(() => { clearInterval(timer) })
 ══════════════════════════════════════ */
 .subscribe-section {
   background: var(--bg-subscribe);
-  color: white;
+  color: rgb(249, 249, 249);
   text-align: center;
   padding: 2.5rem;
   display: flex;
@@ -439,7 +439,7 @@ onUnmounted(() => { clearInterval(timer) })
 .subscribe-input::placeholder { color: #b8926a; }
 .subscribe-btn {
   background: var(--bg-subscribe-btn);
-  color: white;
+  color: rgb(255, 254, 254);
   border: none;
   padding: 0.7rem 1.8rem;
   border-radius: 50px;

@@ -5,7 +5,7 @@
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '0.8rem 3rem',
-      background: theme.isDark ? '#0d0500' : '#6b2d0f',
+      background: theme.isDark ? '#0d0500' : '#3d1505',
       position: 'sticky',
       top: '0',
       zIndex: '100',
@@ -22,7 +22,7 @@
       style="text-decoration:none;flex:1;display:flex;justify-content:center;"
     >
       <img
-        src="/hero66.png"
+        src="/hero101.png"
         alt="Cinnamon Glow Logo"
         style="height:65px;object-fit:contain;"
       />
